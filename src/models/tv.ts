@@ -1,23 +1,24 @@
-
-import { ItemTvShows } from '../components/itemtvshows/itemtvshows';
+import { Item } from '../components/item/item';
 import { Genre } from './genre';
 
 export interface TvShow {
-  backdrop_path?: string, 
-  first_air_date?: string,
-  genre_ids?: Array<number> , 
-  id?: number,
-  name?: string,
-  origin_country?: Array<string>, 
-  original_language?: string, 
-  original_name?: string,
-  overview?: string, 
-  popularity?: number, 
-  poster_path?: string,
-  vote_average?: number, 
-  vote_count?: number
-  routePath?: string;
-    
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  name: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  revenue: number;
+  runtime: number;
+  status: string;
   genres: Genre[];
 }
 
@@ -51,17 +52,16 @@ export interface TvShowCredits {
   }[];
 }
 
-export const mapTvShowToItem = (tvShow: TvShow): ItemTvShows => {
+export const mapTvShowToItem = (tvShow: TvShow): Item => {
   return {
     id: tvShow.id,
-    name: tvShow.name,
-    original_name: tvShow.original_name,
+    title: tvShow.name,
     poster_path: tvShow.poster_path,
     vote_average: tvShow.vote_average,
     backdrop_path: tvShow.backdrop_path,
     vote_count: tvShow.vote_count,
-    first_air_date: tvShow.first_air_date,
+    release_date: tvShow.release_date,
     overview: tvShow.overview,
-    routePath: '/tvshows/' + tvShow.id
+    routePath: '/tvshow/' + tvShow.id
   };
 };
